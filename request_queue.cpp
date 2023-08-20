@@ -1,6 +1,6 @@
 #include "request_queue.h"
 
-std::vector<Document> RequestQueue::AddFindRequest(const std::string& raw_query, SearchServer::DocumentStatus status) {
+std::vector<Document> RequestQueue::AddFindRequest(const std::string& raw_query, DocumentStatus status) {
     // напишите реализацию
     std::vector<Document> answer = search_server_.FindTopDocuments(raw_query, status);
     AddQueryResult(answer);

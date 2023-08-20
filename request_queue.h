@@ -24,7 +24,7 @@ public:
         return answer;
 
     }
-    std::vector<Document> AddFindRequest(const std::string& raw_query, SearchServer::DocumentStatus status);
+    std::vector<Document> AddFindRequest(const std::string& raw_query, DocumentStatus status);
     
     std::vector<Document> AddFindRequest(const std::string& raw_query);
 

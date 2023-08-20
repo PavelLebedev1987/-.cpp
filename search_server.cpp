@@ -64,7 +64,7 @@ int SearchServer::GetDocumentId(int index) const {
     return SearchServer::INVALID_DOCUMENT_ID;
 }
 
-std::tuple<std::vector<std::string>, SearchServer::DocumentStatus> SearchServer::MatchDocument(const std::string& raw_query,
+std::tuple<std::vector<std::string>, DocumentStatus> SearchServer::MatchDocument(const std::string& raw_query,
     int document_id) const {
     const Query query = ParseQuery(raw_query);
     std::vector<std::string> matched_words;

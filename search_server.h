@@ -11,16 +11,16 @@
 #include <set>
 #include <algorithm>
 
+enum class DocumentStatus {
+    ACTUAL,
+    IRRELEVANT,
+    BANNED,
+    REMOVED,
+};
 
 class SearchServer {
 public:
 
-    enum class DocumentStatus {
-        ACTUAL,
-        IRRELEVANT,
-        BANNED,
-        REMOVED,
-    };
 
     struct DocumentData {
         int rating;
