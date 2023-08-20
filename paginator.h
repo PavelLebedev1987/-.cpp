@@ -1,5 +1,48 @@
-//Вставьте сюда своё решение из урока «‎Очередь запросов».‎
 #pragma once
+
+#include <algorithm>
+#include <iostream>
+#include <vector>
+#include <ostream>
+
+#include "search_server.h"
+
+
+
+template <typename Iterator>
+class IteratorRange {
+
+public:
+
+    explicit IteratorRange(Iterator begin, Iterator end) : begin_(begin), end_(end) { }
+
+    Iterator begin() {
+        return begin_;
+    }
+
+    Iterator end() {
+        return end_;
+    }
+
+    size_t GetSize() {
+        return distance(begin_, end_);
+    }
+private:
+
+    Iterator begin_;
+    Iterator end_;
+
+};
+
+std::ostream& operator<<(std::ostream& out, const Document& doc);
+
+template <typename Iterator>
+std::ostream& operator<<(std::ostream& out, IteratorRange<Iterator> iter) {
+    for (auto it = iter.begin(); it != iter.end(); ++it) {
+        out << *it;
+    }
+    return out;
+}
 
 template <typename Iterator>
 class Paginator {
