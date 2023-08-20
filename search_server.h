@@ -10,6 +10,7 @@
 #include <map>
 #include <set>
 #include <algorithm>
+#include <cmath>
 
 enum class DocumentStatus {
     ACTUAL,
@@ -62,7 +63,7 @@ public:
         auto matched_documents = FindAllDocuments(query, predicate);
         sort(matched_documents.begin(), matched_documents.end(),
             [](const Document& lhs, const Document& rhs) {
-                if (abs(lhs.relevance - rhs.relevance) < 1e-6) {
+                if (std::abs(lhs.relevance - rhs.relevance) < 1e-6) {
                     return lhs.rating > rhs.rating;
                 }
                 else {

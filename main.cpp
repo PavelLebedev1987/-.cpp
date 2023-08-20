@@ -14,6 +14,9 @@
 #include "search_server.h"
 #include "document.h"
 #include "request_queue.h"
+#include "paginator.h"
+#include "read_input_functions.h"
+#include "string_processing.h"
 
 
 using namespace std;

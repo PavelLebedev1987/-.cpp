@@ -83,7 +83,7 @@ public:
 
 
 private:
-    vector<IteratorRange<Iterator>> pages_;
+    std::vector<IteratorRange<Iterator>> pages_;
     Iterator begin_;
     Iterator end_;
     size_t page_size_;
