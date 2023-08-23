@@ -38,7 +38,9 @@ private:
             if (documents == 0) {
                 return true;
             }
-            else return false;
+            else {
+                return false;
+            }
         }
 
     };

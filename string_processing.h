@@ -5,6 +5,7 @@
 #include<set>
 #include<string>
 #include <ostream>
+#include <vector>
 
 template <typename StringContainer>
 std::set<std::string> MakeUniqueNonEmptyStrings(const StringContainer& strings) {
@@ -16,5 +17,8 @@ std::set<std::string> MakeUniqueNonEmptyStrings(const StringContainer& strings) 
     }
     return non_empty_strings;
 }
+
+std::vector<std::string> SplitIntoWords(const std::string& text);
+
 
 

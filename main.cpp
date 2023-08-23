@@ -21,8 +21,8 @@
 
 using namespace std;
 
-const int MAX_RESULT_DOCUMENT_COUNT = 5;
-const double MINIMUM_VALUE = 1e-6;
+//const int MAX_RESULT_DOCUMENT_COUNT = 5;
+//const double MINIMUM_VALUE = 1e-6;
 
 
 // ==================== для примера =========================

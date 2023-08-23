@@ -1,1 +1,9 @@
-//Вставьте сюда своё решение из урока «Очередь запросов» темы «Стек, очередь, дек».‎
+#include "document.h"
+
+#include <ostream>
+
+
+std::ostream& operator<<(std::ostream& out, const Document& doc) {
+    out << "{ document_id = " << doc.id << ", relevance = " << doc.relevance << ", rating = " << doc.rating << " }";
+    return out;
+}

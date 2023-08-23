@@ -21,13 +21,9 @@ void SearchServer::AddDocument(int document_id, const std::string& document, Doc
             word_to_document_freqs_[word][document_id] += inv_word_count;
         }
     }
-    int a = 0;
-    if (!id_documents_.empty()) {
-        a = static_cast<int> (id_documents_.size());
-    }
 
     documents_.emplace(document_id, DocumentData{ ComputeAverageRating(ratings), status });
-    id_documents_.emplace(a, document_id);
+    id_documents_.push_back(document_id);
 }
 
 std::vector<Document> SearchServer::FindTopDocuments(const std::string& raw_query, DocumentStatus status) const {
@@ -52,16 +48,10 @@ int SearchServer::GetDocumentId(int index) const {
     if (id_documents_.empty()) {
         return SearchServer::INVALID_DOCUMENT_ID;
     }
-    else if (documents_.size() != id_documents_.size()) {
-        return SearchServer::INVALID_DOCUMENT_ID;
-    }
-    else if (index < 0 || index > id_documents_.size()) {
-        throw std::out_of_range("there is no such ID");;
-    }
     else {
         return id_documents_.at(index);
+        throw std::out_of_range("there is no such ID");
     }
-    return SearchServer::INVALID_DOCUMENT_ID;
 }
 
 std::tuple<std::vector<std::string>, DocumentStatus> SearchServer::MatchDocument(const std::string& raw_query,
@@ -113,10 +103,8 @@ int SearchServer::ComputeAverageRating(const std::vector<int>& ratings) {
     if (ratings.empty()) {
         return 0;
     }
-    int rating_sum = 0;
-    for (const int rating : ratings) {
-        rating_sum += rating;
-    }
+    int rating_sum = accumulate(ratings.begin(), ratings.end(), 0);
+
     return rating_sum / static_cast<int>(ratings.size());
 }
 
@@ -131,11 +119,11 @@ SearchServer::QueryWord SearchServer::ParseQueryWord(std::string text) const {
         is_minus = true;
         text = text.substr(1);
     }
-    int a = static_cast<int>(text.size() - 1);
-    if (text.size() > 1 && text[a] == '-') {
+    int last_simvol = static_cast<int>(text.size() - 1);
+    if (text.size() > 1 && text[last_simvol] == '-') {
         throw std::invalid_argument("many \"-\" in words");
     }
-    if (text.size() == 1 && text[0] == '-') {
+    if (text.size() == 1 && text[last_simvol] == '-') {
         throw std::invalid_argument("only \"-\", no words");;
     }
 
